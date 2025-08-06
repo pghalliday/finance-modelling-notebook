@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
+from functools import cache
 
 from prettytable import PrettyTable, TableStyle
 
@@ -17,6 +18,7 @@ class ContinuousRateCalculation(RateCalculation):
     rate: ContinuousRate
     daily_rate: Decimal
 
+    @cache
     def __str__(self):
         table = PrettyTable(['label', 'value'])
         table.add_row(['Current date', format_day(self.current_date)])
@@ -36,9 +38,11 @@ class ContinuousRateCalculation(RateCalculation):
 class ContinuousRate(Rate):
     annual_rate: Decimal = Decimal('0.0')
 
+    @cache
     def __str__(self):
         return f'ContinuousRate: {self.annual_rate * 100:.2f}%'
 
+    @cache
     def calculate(self, current_date: date, balance: Decimal, accrued: Decimal) -> ContinuousRateCalculation:
         daily_rate = annual_to_continuous_daily_rate(self.annual_rate, days_in_year(current_date.year))
         return ContinuousRateCalculation(rate=self,

@@ -31,7 +31,7 @@ START_DATE = date.today()
 print(f'Start Date: {format_day(START_DATE)}')
 ```
 
-    Start Date: 2025-08-05 : Tue
+    Start Date: 2025-08-06 : Wed
 
 
 ## Primitive schedules
@@ -53,7 +53,7 @@ print(f'Completed: {completed}')
 ```
 
     []
-    Completed: 2025-08-05 : Tue
+    Completed: 2025-08-06 : Wed
 
 
 ### DailySchedule
@@ -70,8 +70,7 @@ print(format_days(matches))
 print(f'Completed: {completed}')
 ```
 
-    [2025-08-05 : Tue
-     2025-08-06 : Wed
+    [2025-08-06 : Wed
      2025-08-07 : Thu
      2025-08-08 : Fri
      2025-08-09 : Sat
@@ -79,7 +78,8 @@ print(f'Completed: {completed}')
      2025-08-11 : Mon
      2025-08-12 : Tue
      2025-08-13 : Wed
-     2025-08-14 : Thu]
+     2025-08-14 : Thu
+     2025-08-15 : Fri]
     Completed: Not completed
 
 
@@ -97,8 +97,8 @@ print(format_days(matches))
 print(f'Completed: {completed}')
 ```
 
-    [2025-09-24 : Wed]
-    Completed: 2025-09-24 : Wed
+    [2025-09-25 : Thu]
+    Completed: 2025-09-25 : Thu
 
 
 ### FromSchedule
@@ -115,8 +115,7 @@ print(format_days(matches))
 print(f'Completed: {completed}')
 ```
 
-    [2025-08-15 : Fri
-     2025-08-16 : Sat
+    [2025-08-16 : Sat
      2025-08-17 : Sun
      2025-08-18 : Mon
      2025-08-19 : Tue
@@ -124,7 +123,8 @@ print(f'Completed: {completed}')
      2025-08-21 : Thu
      2025-08-22 : Fri
      2025-08-23 : Sat
-     2025-08-24 : Sun]
+     2025-08-24 : Sun
+     2025-08-25 : Mon]
     Completed: Not completed
 
 
@@ -142,8 +142,7 @@ print(format_days(matches))
 print(f'Completed: {completed}')
 ```
 
-    [2025-08-05 : Tue
-     2025-08-06 : Wed
+    [2025-08-06 : Wed
      2025-08-07 : Thu
      2025-08-08 : Fri
      2025-08-09 : Sat
@@ -151,8 +150,9 @@ print(f'Completed: {completed}')
      2025-08-11 : Mon
      2025-08-12 : Tue
      2025-08-13 : Wed
-     2025-08-14 : Thu]
-    Completed: 2025-08-14 : Thu
+     2025-08-14 : Thu
+     2025-08-15 : Fri]
+    Completed: 2025-08-15 : Fri
 
 
 ### RangeSchedule
@@ -171,8 +171,7 @@ print(format_days(matches))
 print(f'Completed: {completed}')
 ```
 
-    [2025-08-15 : Fri
-     2025-08-16 : Sat
+    [2025-08-16 : Sat
      2025-08-17 : Sun
      2025-08-18 : Mon
      2025-08-19 : Tue
@@ -180,8 +179,9 @@ print(f'Completed: {completed}')
      2025-08-21 : Thu
      2025-08-22 : Fri
      2025-08-23 : Sat
-     2025-08-24 : Sun]
-    Completed: 2025-08-24 : Sun
+     2025-08-24 : Sun
+     2025-08-25 : Mon]
+    Completed: 2025-08-25 : Mon
 
 
 ### WeeklySchedule
@@ -198,8 +198,7 @@ print(format_days(matches))
 print(f'Completed: {completed}')
 ```
 
-    [2025-08-05 : Tue
-     2025-08-12 : Tue
+    [2025-08-12 : Tue
      2025-08-19 : Tue
      2025-08-26 : Tue
      2025-09-02 : Tue
@@ -300,8 +299,7 @@ print(format_days(matches))
 print(f'Completed: {completed}')
 ```
 
-    [2025-08-05 : Tue
-     2025-08-06 : Wed
+    [2025-08-06 : Wed
      2025-08-07 : Thu
      2025-08-08 : Fri
      2025-08-11 : Mon
@@ -313,7 +311,8 @@ print(f'Completed: {completed}')
      2025-08-19 : Tue
      2025-08-20 : Wed
      2025-08-21 : Thu
-     2025-08-22 : Fri]
+     2025-08-22 : Fri
+     2025-08-25 : Mon]
     Completed: Not completed
 
 
@@ -373,10 +372,9 @@ print(format_days(matches))
 print(f'Completed: {completed}')
 ```
 
-    [2025-08-05 : Tue
-     2025-08-12 : Tue
+    [2025-08-12 : Tue
      2025-08-19 : Tue
      2025-08-26 : Tue
      2025-09-02 : Tue]
-    Completed: 2025-09-03 : Wed
+    Completed: 2025-09-04 : Thu
 

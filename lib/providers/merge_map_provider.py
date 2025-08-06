@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
+from functools import cache
 from typing import TypeVar, Callable, Generic, Sequence
 
 from .never_provider import NeverProvider
@@ -9,12 +10,13 @@ T = TypeVar('T')
 U = TypeVar('U')
 
 
-@dataclass
+@dataclass(frozen=True)
 class MergeMapProvider(Generic[T, U], Provider[T]):
     transform: Callable[[date, U], Provider[T]]
     provider: Provider[U] = NeverProvider()
     __sub_providers: Sequence[Provider[T]] = ()
 
+    @cache
     def get(self, current_date: date) -> Provided[T]:
         # first, get the provided sequence of U
         provided = self.provider.get(current_date)

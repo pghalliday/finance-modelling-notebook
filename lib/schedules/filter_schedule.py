@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
+from functools import cache
 from typing import Callable
 
 from .schedule import Schedule, Scheduled
@@ -9,5 +10,6 @@ from .schedule import Schedule, Scheduled
 class FilterSchedule(Schedule):
     filter: Callable[[date], Scheduled]
 
+    @cache
     def check(self, current_date: date) -> Scheduled:
         return self.filter(current_date)

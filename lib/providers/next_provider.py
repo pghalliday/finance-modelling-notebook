@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
+from functools import cache
 from typing import TypeVar, Sequence
 
 from .provider import Provider, Provided
@@ -11,6 +12,7 @@ T = TypeVar('T')
 class NextProvider(Provider[T]):
     providers: Sequence[Provider[T]] = ()
 
+    @cache
     def get(self, current_date: date) -> T:
         providers_and_provided = tuple((provider, provider.get(current_date))
                                        for provider

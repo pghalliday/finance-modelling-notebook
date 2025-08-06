@@ -4,29 +4,28 @@ A collection of Provider implementations that will take the current date and pro
 valid for that date. The sequence will be wrapped in an instance `Provided` that will also indicate if the
 provider has completed (i.e., it will not provide any more values).
 
-
 ```python
 from calendar import TUESDAY, THURSDAY
 from datetime import date, timedelta
 
-from lib.providers import \
-    NeverProvider, \
-    AlwaysProvider, \
-    ScheduledProvider, \
-    NextProvider, \
-    MergeProvider, \
-    FunctionProvider, \
-    MapProvider, \
-    FlatMapProvider, \
-    MergeMapProvider, \
-    Provided, \
+from lib.providers import
+    NeverProvider,
+    AlwaysProvider,
+    ScheduledProvider,
+    NextProvider,
+    MergeProvider,
+    FunctionProvider,
+    MapProvider,
+    FlatMapProvider,
+    MergeMapProvider,
+    Provided,
     create_sequence_provider
-from lib.schedules import \
-    WeeklySchedule, \
-    AnySchedule, \
+from lib.schedules import
+    WeeklySchedule,
+    AnySchedule,
     UntilSchedule
-from lib.utils.format import \
-    format_day, \
+from lib.utils.format import
+    format_day,
     format_values
 
 START_DATE = date.today()
@@ -36,11 +35,9 @@ print(f'Start Date: {format_day(START_DATE)}')
 
     Start Date: 2025-08-05 : Tue
 
-
 ## NeverProvider
 
 This is a trivial provider that always provides an empty sequence.
-
 
 ```python
 days = [START_DATE + timedelta(days=i) for i in range(10)]
@@ -59,11 +56,9 @@ print(format_values(values))
      2025-08-13 : Wed : Provided(values=(), complete=True)
      2025-08-14 : Thu : Provided(values=(), complete=True)]
 
-
 ## AlwaysProvider
 
 This is a trivial provider that always provides a single value sequence.
-
 
 ```python
 days = [START_DATE + timedelta(days=i) for i in range(10)]
@@ -82,12 +77,10 @@ print(format_values(values))
      2025-08-13 : Wed : Provided(values=('My value',), complete=False)
      2025-08-14 : Thu : Provided(values=('My value',), complete=False)]
 
-
 ## ScheduledProvider
 
 This provider provides a single value sequence according to the specified schedule. If not scheduled it
 provides an empty sequence.
-
 
 ```python
 days = [START_DATE + timedelta(days=i) for i in range(10)]
@@ -108,11 +101,9 @@ print(format_values(values))
      2025-08-13 : Wed : Provided(values=(), complete=False)
      2025-08-14 : Thu : Provided(values=('My value',), complete=False)]
 
-
 ## FunctionProvider
 
 This provider uses the specified function to map the current date to an instance of `Provided`.
-
 
 ```python
 days = [START_DATE + timedelta(days=i) for i in range(10)]
@@ -132,12 +123,10 @@ print(format_values(values))
      2025-08-13 : Wed : Provided(values=(2,), complete=False)
      2025-08-14 : Thu : Provided(values=(3,), complete=False)]
 
-
 ## NextProvider
 
 This provider takes a sequence of providers and provides the values from the first provider that provides
 a non-empty sequence of values.
-
 
 ```python
 days = [START_DATE + timedelta(days=i) for i in range(10)]
@@ -160,12 +149,10 @@ print(format_values(values))
      2025-08-13 : Wed : Provided(values=('Value 3',), complete=True)
      2025-08-14 : Thu : Provided(values=(), complete=True)]
 
-
 ## MergeProvider
 
 This provider takes a sequence of providers and provides a corresponding sequence of the merged values provided
 by those providers.
-
 
 ```python
 days = [START_DATE + timedelta(days=i) for i in range(10)]
@@ -192,11 +179,9 @@ print(format_values(values))
      2025-08-13 : Wed : Provided(values=('Always value', 'Value 3'), complete=False)
      2025-08-14 : Thu : Provided(values=('Always value', 'Sometimes value'), complete=False)]
 
-
 ## MapProvider
 
 This provider uses the specified transform function to transform the values provided by the specified provider
-
 
 ```python
 days = [START_DATE + timedelta(days=i) for i in range(10)]
@@ -219,13 +204,11 @@ print(format_values(values))
      2025-08-13 : Wed : Provided(values=(), complete=False)
      2025-08-14 : Thu : Provided(values=(('MY VALUE', 'my value'),), complete=False)]
 
-
 ## FlatMapProvider
 
 This provider, like the `MapProvider`, uses the specified transform function to transform the values provided
 by the specified provider. However, in this case the transform function should return a sequence and these
 sequences will be flattened in the resulting `Provided` instance.
-
 
 ```python
 days = [START_DATE + timedelta(days=i) for i in range(10)]
@@ -248,13 +231,11 @@ print(format_values(values))
      2025-08-13 : Wed : Provided(values=(), complete=False)
      2025-08-14 : Thu : Provided(values=('MY VALUE', 'my value'), complete=False)]
 
-
 ## MergeMapProvider
 
 This provider, like the `MapProvider`, uses the specified transform function to transform the values provided
 by the specified provider. However, in this case, the transform function should return a new `Provider` instance.
 The values from these providers will be merged in future resulting `Provided` instances.
-
 
 ```python
 days = [START_DATE + timedelta(days=i) for i in range(15)]
@@ -284,15 +265,14 @@ print(format_values(values))
      2025-08-18 : Mon : Provided(values=('3-4',), complete=True)
      2025-08-19 : Tue : Provided(values=(), complete=True)]
 
-
 ## Factories
 
 The following factory methods are available to construct combinations of providers to implement common patterns.
 
 ### create_sequence_provider
 
-This factory takes a mapping of days to values and returns a `Provider` that will provide the given values on the specified days.
-
+This factory takes a mapping of days to values and returns a `Provider` that will provide the given values on the
+specified days.
 
 ```python
 days = [START_DATE + timedelta(days=i) for i in range(10)]

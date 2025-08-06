@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
+from functools import cache
 from typing import TypeVar
 
 from .provider import Provider, Provided
@@ -13,6 +14,7 @@ class ScheduledProvider(Provider[T]):
     value: T = None
     schedule: Schedule = NeverSchedule()
 
+    @cache
     def get(self, current_date: date) -> Provided[T]:
         scheduled = self.schedule.check(current_date)
         values = (self.value,) if scheduled.match else ()

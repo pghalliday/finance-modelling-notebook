@@ -50,4 +50,4 @@ def create_bands(raw_bands: Mapping[Decimal, T]) -> Sequence[Tuple[Band, T]]:
         last_value = value
         last_above = above
     bands.append((Band(lower=last_above, size=None), last_value))
-    return bands
+    return tuple(bands)

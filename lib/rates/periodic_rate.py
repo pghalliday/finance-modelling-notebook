@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
+from functools import cache
 
 from prettytable import PrettyTable, TableStyle
 
@@ -17,6 +18,7 @@ class PeriodicRateCalculation(RateCalculation):
     rate: PeriodicRate
     daily_rate: Decimal
 
+    @cache
     def __str__(self):
         table = PrettyTable(['label', 'value'])
         table.add_row(['Current date', format_day(self.current_date)])
@@ -37,9 +39,11 @@ class PeriodicRate(Rate):
     annual_rate: Decimal = Decimal('0.0')
     period_count: int = 1
 
+    @cache
     def __str__(self):
         return f'PeriodicRate: {self.period_count} periods: {self.annual_rate * 100:.2f}%'
 
+    @cache
     def calculate(self, current_date: date, balance: Decimal, accrued: Decimal) -> PeriodicRateCalculation:
         daily_rate = annual_to_periodic_daily_rate(self.annual_rate,
                                                    self.period_count,

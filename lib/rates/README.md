@@ -227,7 +227,6 @@ print(final_state)
 ```python
 print('Days in first half of the year', (date(2025, 7, 1) - date(2025, 1, 1)).days)
 print('Days in second half of the year', (date(2026, 1, 1) - date(2025, 7, 1)).days)
-
 ```
 
     Days in first half of the year 181
@@ -314,8 +313,6 @@ print(calculation)
     ├─────────────────────────┼─────────────────────────────────┼──────────────┼──────────┼─────────────┤
     │ 2025-01-01 : Wed        │                          Totals │ 10000.000000 │ 0.000000 │    2.479957 │
     └─────────────────────────┴─────────────────────────────────┴──────────────┴──────────┴─────────────┘
-
-    
 
 
 

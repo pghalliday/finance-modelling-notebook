@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
+from functools import cache
 from typing import Sequence
 
 from .schedule import Schedule, Scheduled
@@ -9,6 +10,7 @@ from .schedule import Schedule, Scheduled
 class AllSchedule(Schedule):
     schedules: Sequence[Schedule] = ()
 
+    @cache
     def check(self, current_date: date) -> Scheduled:
         schedules_and_scheduled = tuple((schedule, schedule.check(current_date))
                                         for schedule

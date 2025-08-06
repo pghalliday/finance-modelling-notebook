@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
+from functools import cache
 from typing import Tuple, Sequence, Mapping
 
 from prettytable import PrettyTable, TableStyle
@@ -17,6 +18,7 @@ class BandedRateCalculation(RateCalculation):
     rate: BandedRate
     calculations: Sequence[RateCalculation]
 
+    @cache
     def __str__(self):
         table = PrettyTable(['Band', 'Rate', 'Balance', 'Accrued', 'Calculation'])
         table.set_style(TableStyle.SINGLE_BORDER)
@@ -45,6 +47,7 @@ class BandedRateCalculation(RateCalculation):
 class BandedRate(Rate):
     bands: Sequence[Tuple[Band, Rate]] = ()
 
+    @cache
     def __str__(self):
         table = PrettyTable(['Band', 'Rate'])
         table.set_style(TableStyle.SINGLE_BORDER)
@@ -53,10 +56,11 @@ class BandedRate(Rate):
         table.align['Rate'] = 'r'
         return table.get_string()
 
+    @cache
     def calculate(self, current_date: date, balance: Decimal, accrued: Decimal) -> BandedRateCalculation:
-        calculations = [rate.calculate(current_date, *(band.portion([balance, accrued])))
-                        for band, rate
-                        in self.bands]
+        calculations = tuple(rate.calculate(current_date, *(band.portion([balance, accrued])))
+                             for band, rate
+                             in self.bands)
         return BandedRateCalculation(rate=self,
                                      current_date=current_date,
                                      balance=balance,
