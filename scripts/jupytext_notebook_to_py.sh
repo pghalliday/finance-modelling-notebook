@@ -5,3 +5,6 @@ set -e
 NOTEBOOK_PATH=$(realpath "$1")
 
 jupytext --to py "$NOTEBOOK_PATH"
+
+# Also remove all the papermill output
+

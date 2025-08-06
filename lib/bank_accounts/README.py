@@ -12,12 +12,12 @@
 #     name: python3
 # ---
 
-# %% [markdown] papermill={"duration": 0.00577, "end_time": "2025-08-06T12:37:07.809943", "exception": false, "start_time": "2025-08-06T12:37:07.804173", "status": "completed"}
+# %% [markdown]
 # # Bank Accounts
 #
 # State and reducer implementations to keep track of bank account changes.
 
-# %% papermill={"duration": 0.052605, "end_time": "2025-08-06T12:37:07.866634", "exception": false, "start_time": "2025-08-06T12:37:07.814029", "status": "completed"}
+# %%
 from datetime import date
 from decimal import Decimal, getcontext, FloatOperation
 
@@ -47,10 +47,10 @@ INITIAL_STATE = BankAccount(current_date=START_DATE,
 print(f'Decimal context: {decimal_context}')
 print(INITIAL_STATE)
 
-# %% [markdown] papermill={"duration": 0.000904, "end_time": "2025-08-06T12:37:07.868789", "exception": false, "start_time": "2025-08-06T12:37:07.867885", "status": "completed"}
+# %% [markdown]
 # The reducer should be provided with an interest rate and an interest payment schedule.
 
-# %% papermill={"duration": 0.12548, "end_time": "2025-08-06T12:37:07.995126", "exception": false, "start_time": "2025-08-06T12:37:07.869646", "status": "completed"}
+# %%
 providers = BankAccountProviders(rate_provider=RATE_PROVIDER,
                                  interest_payment_schedule=DailySchedule())
 state = INITIAL_STATE
@@ -58,10 +58,10 @@ for day in DAYS:
     state = state.next(providers)
 print(state)
 
-# %% [markdown] papermill={"duration": 0.000733, "end_time": "2025-08-06T12:37:07.996989", "exception": false, "start_time": "2025-08-06T12:37:07.996256", "status": "completed"}
+# %% [markdown]
 # The state will also provide information on yearly opening and closing balances, etc.
 
-# %% papermill={"duration": 0.004932, "end_time": "2025-08-06T12:37:08.002598", "exception": false, "start_time": "2025-08-06T12:37:07.997666", "status": "completed"}
+# %%
 for year in YEARS:
     print(f'Opening balance for year {year}: {state.opening_balance[year]:.6f}')
     print(f'Closing balance for year {year}: {state.closing_balance[year]:.6f}')
