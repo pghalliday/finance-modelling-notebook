@@ -1,0 +1,39 @@
+[project]
+name = "financial-simulator"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Peter Halliday", email = "pghalliday@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "prettytable>=3.16.0",
+]
+
+[project.scripts]
+financial-simulator = "financial_simulator:main"
+
+[build-system]
+requires = ["uv_build>=0.8.8,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+    "jupytext>=1.17.2",
+    "notebook>=7.4.5",
+    "pandas>=2.3.1",
+    "pandas-stubs>=2.3.0.250703",
+    "papermill>=2.6.0",
+    "plotly>=6.2.0",
+    "pytest>=8.4.1",
+    "ruff>=0.12.8",
+    "uv-build>=0.8.8",
+]
+
+[tool.pytest.ini_options]
+minversion = "8.4.1"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]

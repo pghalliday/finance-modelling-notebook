@@ -31,22 +31,22 @@ init_project: create_readme_notebook_files
 create_readme_notebook_files: $(EXPECTED_README_NOTEBOOK_FILES)
 
 %/README.py: %/README.ipynb
-	jupytext --output $@ $<
+	uv run jupytext --output $@ $<
 
 %/README.md: $(PAPERMILL_OUTPUT_DIR)/%/README.md
 	cp -f $< $@
 
 $(PAPERMILL_OUTPUT_DIR)/%/README.md: $(PAPERMILL_OUTPUT_DIR)/%/README.ipynb
-	jupyter nbconvert --to markdown $<
+	uv run jupyter nbconvert --to markdown $<
 
 $(PAPERMILL_OUTPUT_DIR)/%/README.ipynb: %/README.ipynb | $(PAPERMILL_OUTPUT_DIRS)
-	-papermill --cwd . $< $@
+	-uv run papermill --cwd . $< $@
 
 $(PAPERMILL_OUTPUT_DIRS):
 	mkdir -p $@
 
 %/README.ipynb: %/README.py
-	jupytext --output $@ $<
+	uv run jupytext --output $@ $<
 
 clean: clean_papermill clean_readme_notebook_files
 

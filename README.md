@@ -1,4 +1,4 @@
-# finance-modelling-notebook
+# financial-simulator
 
 A Jupyter notebook for modelling personal finances
 
